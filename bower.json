@@ -1,0 +1,21 @@
+{
+  "name": "visualizations",
+  "description": "2 or more visualizations from the Chicago Food Inspection data feed",
+  "main": "index.js",
+  "authors": [
+    "kagos"
+  ],
+  "license": "ISC",
+  "homepage": "index.html",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.6"
+  }
+}
