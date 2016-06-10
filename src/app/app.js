@@ -1,4 +1,3 @@
-angular.module( 'visualApp', [])
-  .controller('VisualAppController', ['$scope', function($scope) {
+'use strict';
 
-  }]);
+angular.module( 'visualApp', ['ngResource', 'cityData', 'chartDonut']);
