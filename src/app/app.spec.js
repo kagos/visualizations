@@ -1,3 +1,3 @@
-describe( 'VisualAppController', function() {
-  
+describe( 'visualApp', function() {
+
 });
