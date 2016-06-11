@@ -1,60 +1,66 @@
-.navbar {
-  background-color: @color-header;
-  padding: 0 10px !important;
+body {
+  font-family: @sansFontFamily;
+  font-style: normal;
+  color: @color-font;
 
-  &.header {
-    border-bottom: 1px solid @color-border;
-    margin-top: 0 !important;
-  }
+  .navbar {
+    background-color: @color-header;
+    font-size: 35px;
+    line-height: 60px;
+    padding: 0 10px !important;
 
-  &.footer {
-    border-top: 1px solid @color-border;
+    &.header {
+      border-bottom: 1px solid @color-border;
+      margin-top: 0 !important;
+    }
 
-    a {
-      float: right;
-      margin-right: 10px;
+    &.footer {
+      border-top: 1px solid @color-border;
 
-      i {
-        font-size: 35px;
-        padding: 10px 0;
+      a {
+        float: right;
+        margin-right: 10px;
+
+        i {
+          padding: 10px 0;
+        }
       }
     }
-  }
 
-  .navbar-header {
-    font-size: 1.5em;
-    margin-top: 15px;
-    text-transform: uppercase;
-  }
-}
-
-.content-container {
-  margin: 70px 0;
-
-  .outer-chart-container {
-
-    h2 {
-      background-color: @color-header;
-      border: 1px solid @color-border;
-      border-bottom: 0;
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
+    .navbar-header {
       font-size: 1.5em;
-      margin-bottom: 0;
-      padding: 10px;
-      text-transform: uppercase;
+      margin-top: 15px;
     }
+  }
 
-    .chart-container {
-      border: 1px solid @color-border;
-      border-bottom-left-radius: 5px;
-      border-bottom-right-radius: 5px;
+  .content-container {
+    margin: 70px 0;
 
-      .chart {
+    .outer-chart-container {
+
+      h2 {
+        background-color: @color-warn;
+        border: 1px solid @color-border;
+        border-bottom: 0;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        color: #fff;
+        font-size: 1.5em;
+        margin-bottom: 0;
         padding: 10px;
+      }
 
-        span {
-          font-size: 1.5em;
+      .chart-container {
+        border: 1px solid @color-border;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+
+        .chart {
+          padding: 10px;
+
+          span {
+            font-size: 1.5em;
+          }
         }
       }
     }
