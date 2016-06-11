@@ -1,41 +1,71 @@
 <!DOCTYPE html>
 <html ng-app="visualApp">
   <head>
-    <title ng-bind="Visualizations"></title>
+    <title>Chicago Food Inspector Data Feed Visualizations</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- stylesheets -->
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-
-    <script type="text/javascript" src="vendor/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="vendor/angular/angular.min.js"></script>
-    <script type="text/javascript" src="vendor/angular-resource/angular-resource.js"></script>
-    <script type="text/javascript" src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="vendor/Chart.js/Chart.js"></script>
-    <script type="text/javascript" src="vendor/angular-chart.js/dist/angular-chart.js"></script>
-
-    <script type="text/javascript" src="app/app.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="vendor/angular-chart.js/dist/angular-chart.min.css" />
     <link rel="stylesheet" type="text/css" href="build/style.css" />
+
+    <!-- vendor libraries -->
+    <script src="vendor/jquery/dist/jquery.js"></script>
+    <script src="vendor/angular/angular.js"></script>
+    <script src="vendor/angular-resource/angular-resource.js"></script>
+    <script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="vendor/Chart.js/Chart.js"></script>
+    <script src="vendor/angular-chart.js/dist/angular-chart.js"></script>
+
+    <!-- app common -->
+    <script src="app/common/common.js"></script>
+    <script src="app/app.module.js"></script>
+
+    <script src="app/common/header/header.module.js"></script>
+    <script src="app/common/header/header.component.js"></script>
+
+    <script src="app/common/footer/footer.module.js"></script>
+    <script src="app/common/footer/footer.component.js"></script>
+
+    <!-- app features -->
+    <script src="app/city-data/city-data.module.js"></script>
+    <script src="app/city-data/city-data.service.js"></script>
+
+    <script src="app/inspection-date/inspection-date.module.js"></script>
+    <script src="app/inspection-date/inspection-date.component.js"></script>
+
+    <script src="app/inspection-results/inspection-results.module.js"></script>
+    <script src="app/inspection-results/inspection-results.component.js"></script>
+
+    <script src="app/risk-level/risk-level.module.js"></script>
+    <script src="app/risk-level/risk-level.component.js"></script>
   </head>
-  <body class="container-fluid">
-    <h1></h1>
-    <div ng-controller="RiskLevelDonutChartCtrl" class="col-md-6">
-      <h2>{{ title }}</h2>
-      <h3>{{ subtitle }}</h3>
-      <canvas class="chart chart-doughnut"
-        chart-data="data"
-        chart-labels="labels"
-        chart-legend="legend"></canvas>
+  <body>
+    <header></header>
+    <div class="container-fluid content-container">
+      <inspection-results></inspection-results>
+      <risk-level></risk-level>
+      <inspection-date></inspection-date>
     </div>
-    <div ng-controller="InspectionPerDateLineChartCtrl" class="col-md-6">
-      <h2>{{ title }}</h2>
-      <h3>{{ subtitle }}</h3>
-      <canvas class="chart chart-line"
-        chart-data="data"
-        chart-labels="labels"
-        chart-click="onClick"
-        chart-series="series"></canvas>
-    </div>
+    <footer></footer>
   </body>
 </html>

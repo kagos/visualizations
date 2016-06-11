@@ -1,6 +1,6 @@
 {
   "name": "visualizations",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "2 or more visualizations from the Chicago Food Inspection data feed",
   "main": "index.js",
   "scripts": {
