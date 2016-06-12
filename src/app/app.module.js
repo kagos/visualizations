@@ -2,8 +2,8 @@
 
 angular.module('visualApp', [
   'header',
-  'inspectionDate',
   'inspectionResults',
+  'inspectionDate',
   'riskLevel',
   'footer'
 ]);

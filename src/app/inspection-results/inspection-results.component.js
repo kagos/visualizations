@@ -16,31 +16,33 @@ angular
     controller: ['$http', 'CityDataService',
       function InspectionResultsScatterChartCtrl($http, CityDataService) {
         var self = this;
+        self.subtitle = 'Inspection Results';
 
-        CityDataService.getCityData($http).success(function(dataObj) {
-          self.subtitle = 'Inspection Results';
+        setTimeout(function() {
+          CityDataService.getCityData($http).success(function(dataObj) {
 
-          var data = [];
-          var labels = [];
-          var resultsObj = common.buildCountObj(dataObj, 'results');
+            var data = [];
+            var labels = [];
+            var resultsObj = common.buildCountObj(dataObj, 'results');
 
-          // Iterate through resultsObj to create arrays for labels and the count of
-          // occurrences of those labels...
-          $.each(resultsObj, function(value, key) {
-            if(key > 50) {
-              labels.push(value);
-              data.push(key);
-            }
+            // Iterate through resultsObj to create arrays for labels and the count of
+            // occurrences of those labels...
+            $.each(resultsObj, function(value, key) {
+              if(key > 50) {
+                labels.push(value);
+                data.push(key);
+              }
+            });
+
+            // Assign new arrays to this for usage with the donut chart
+            self.series = ['Series A'];
+            self.labels = labels;
+            self.data = data;
+
+          }).error(function(err) {
+            console.log(err);
           });
-
-          // Assign new arrays to this for usage with the donut chart
-          self.series = ['Series A'];
-          self.labels = labels;
-          self.data = data;
-
-        }).error(function(err) {
-          console.log(err);
-        });
+        }, 1);
       }
     ]}
   );

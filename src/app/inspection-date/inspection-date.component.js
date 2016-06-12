@@ -16,38 +16,40 @@ angular
     controller: ['$http', 'CityDataService',
       function InspectionPerDateLineChartCtrl($http, CityDataService) {
         var self = this;
+        self.subtitle = 'Inspection Dates';
 
-        CityDataService.getCityData($http).success(function(dataObj) {
-          self.subtitle = 'Inspection Dates';
+        setTimeout(function() {
+          CityDataService.getCityData($http).success(function(dataObj) {
 
-          var data = [];
-          var labels = [];
-          var dateObj = {};
+            var data = [];
+            var labels = [];
+            var dateObj = {};
 
-          $(dataObj).each(function(index, entry) {
-            if(entry.inspection_date) {
-              var inspectionDate = new Date(entry.inspection_date);
-              var inspectionMonth = common.getMonthName(inspectionDate.getMonth());
+            $(dataObj).each(function(index, entry) {
+              if(entry.inspection_date) {
+                var inspectionDate = new Date(entry.inspection_date);
+                var inspectionMonth = common.getMonthName(inspectionDate.getMonth());
 
-              dateObj.hasOwnProperty(inspectionMonth) ?
-                dateObj[inspectionMonth]++ :
-                dateObj[inspectionMonth] = 1;
-            }
+                dateObj.hasOwnProperty(inspectionMonth) ?
+                  dateObj[inspectionMonth]++ :
+                  dateObj[inspectionMonth] = 1;
+              }
+            });
+
+            // Iterate through dateObj to create arrays for labels and the count of
+            // occurrences of those labels...
+            $.each(dateObj, function(value, key) {
+              data.push(key);
+            });
+
+            // Assign new arrays to self for usage with the line chart
+            self.labels = common.getMonthName();
+            self.data = [data];
+
+          }).error(function(err) {
+            console.log(err);
           });
-
-          // Iterate through dateObj to create arrays for labels and the count of
-          // occurrences of those labels...
-          $.each(dateObj, function(value, key) {
-            data.push(key);
-          });
-
-          // Assign new arrays to self for usage with the line chart
-          self.labels = common.getMonthName();
-          self.data = [data];
-
-        }).error(function(err) {
-          console.log(err);
-        });
+        }, 1000);
       }
     ]
   });

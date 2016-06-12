@@ -33,4 +33,4 @@ var common = {
       months[monthIndex] :
       months;
   }
-}
+};
