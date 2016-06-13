@@ -21,12 +21,15 @@ angular
               dateObj[inspectionMonth] = 1;
           });
 
-          $.each(dateObj, function(value, key) {
+          var _obj = common.sortObjProperties(dateObj, 'month');
+
+          $.each(_obj, function(value, key) {
             data.push(key);
             labels.push(common.getMonthName(value));
           });
 
           self.subtitle = 'Inspection Dates';
+          self.description = 'Chicago Food Inspections by Month, from 2010 - 2016';
           self.labels = labels;
 
           $timeout(function() {

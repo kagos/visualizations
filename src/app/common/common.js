@@ -74,11 +74,7 @@ var common = {
     _workingArr.sort();
 
     $.each(_workingArr, function(key) {
-      var thisProp = dataObj[_workingArr[key]];
-      if(sortType === 'month') {
-        thisProp = common.getMonthName(thisProp);
-      }
-      sorted[_workingArr[key]] = thisProp;
+      sorted[_workingArr[key]] = dataObj[_workingArr[key]];
     });
 
     return sorted;

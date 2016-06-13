@@ -13,6 +13,7 @@ angular
           var formattedObj = common.getFormattedObj(countObj, true);
 
           self.subtitle = 'Establishment Risk Levels';
+          self.description = 'Chicago Food Inspections Inspected Establishments by Risk Level, from 2010 - 2016';
           self.labels = formattedObj.labels;
           self.data = formattedObj.data;
         });

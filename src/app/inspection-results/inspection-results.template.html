@@ -1,7 +1,8 @@
 <div class="col-md-6 outer-chart-container">
   <h2>{{ $ctrl.subtitle }}</h2>
-    <canvas class="chart chart-polar-area"
-      chart-data="$ctrl.data"
-      chart-labels="$ctrl.labels"
-      chart-legend="$ctrl.legend"></canvas>
+  <div class="description">{{ $ctrl.description }}</div>
+  <canvas class="chart chart-polar-area"
+    chart-data="$ctrl.data"
+    chart-labels="$ctrl.labels"
+    chart-legend="$ctrl.legend"></canvas>
 </div>
