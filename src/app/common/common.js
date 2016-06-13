@@ -27,13 +27,13 @@ var common = {
     return dataObj;
   },
 
-  getFormattedObj: function(countObj, sortByProp) {
+  getFormattedObj: function(countObj, sortType) {
     var _obj = {
       labels: [],
       data: []
     };
 
-    if(sortByProp) countObj = common.sortObjPropertiesAlphabetically(countObj);
+    if(sortType) countObj = common.sortObjProperties(countObj, sortType);
 
     $.each(countObj, function(value, key) {
       _obj.labels.push(value);
@@ -44,27 +44,25 @@ var common = {
   },
 
   getMonthName: function(monthIndex) {
-    var months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ];
-
-    return (monthIndex) ?
-      months[monthIndex] :
-      months;
+    return common.months[monthIndex];
   },
 
-  sortObjPropertiesAlphabetically: function(dataObj) {
+  months: [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ],
+
+  sortObjProperties: function(dataObj, sortType) {
     var sorted = {};
     var _workingArr = [];
 
@@ -76,7 +74,11 @@ var common = {
     _workingArr.sort();
 
     $.each(_workingArr, function(key) {
-      sorted[_workingArr[key]] = dataObj[_workingArr[key]];
+      var thisProp = dataObj[_workingArr[key]];
+      if(sortType === 'month') {
+        thisProp = common.getMonthName(thisProp);
+      }
+      sorted[_workingArr[key]] = thisProp;
     });
 
     return sorted;

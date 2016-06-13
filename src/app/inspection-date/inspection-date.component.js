@@ -13,22 +13,21 @@ angular
           var dateObj = {};
 
           $(dataObj).each(function(index, entry) {
-            if(entry.inspection_date) {
-              var inspectionDate = new Date(entry.inspection_date);
-              var inspectionMonth = common.getMonthName(inspectionDate.getMonth());
+            var inspectionDate = new Date(entry.inspection_date);
+            var inspectionMonth = inspectionDate.getMonth();
 
-              dateObj.hasOwnProperty(inspectionMonth) ?
-                dateObj[inspectionMonth]++ :
-                dateObj[inspectionMonth] = 1;
-            }
+            dateObj.hasOwnProperty(inspectionMonth) ?
+              dateObj[inspectionMonth]++ :
+              dateObj[inspectionMonth] = 1;
           });
 
           $.each(dateObj, function(value, key) {
             data.push(key);
+            labels.push(common.getMonthName(value));
           });
 
           self.subtitle = 'Inspection Dates';
-          self.labels = common.getMonthName();
+          self.labels = labels;
 
           $timeout(function() {
             self.data = [data];
