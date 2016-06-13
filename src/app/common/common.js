@@ -1,3 +1,5 @@
+"use strict";
+
 var common = {
   buildCountObj: function(dataObj, property, limit) {
     var _obj = {};
@@ -21,22 +23,24 @@ var common = {
         delete dataObj[thisObj];
       }
     };
+
     return dataObj;
   },
 
-  getFormattedObj: function(countObj) {
-    var labels = [];
-    var data = [];
+  getFormattedObj: function(countObj, sortByProp) {
+    var _obj = {
+      labels: [],
+      data: []
+    };
+
+    if(sortByProp) countObj = common.sortObjPropertiesAlphabetically(countObj);
 
     $.each(countObj, function(value, key) {
-      labels.push(value);
-      data.push(key);
+      _obj.labels.push(value);
+      _obj.data.push(key);
     });
 
-    return {
-      labels: labels,
-      data: data
-    }
+    return _obj;
   },
 
   getMonthName: function(monthIndex) {
@@ -58,5 +62,23 @@ var common = {
     return (monthIndex) ?
       months[monthIndex] :
       months;
+  },
+
+  sortObjPropertiesAlphabetically: function(dataObj) {
+    var sorted = {};
+    var _workingArr = [];
+
+    for (var key in dataObj) {
+      if (dataObj.hasOwnProperty(key)) {
+        _workingArr.push(key);
+      }
+    }
+    _workingArr.sort();
+
+    $.each(_workingArr, function(key) {
+      sorted[_workingArr[key]] = dataObj[_workingArr[key]];
+    });
+
+    return sorted;
   }
 };

@@ -10,7 +10,7 @@ angular
 
         CityDataService.getCityData($http).success(function(dataObj) {
           var countObj = common.buildCountObj(dataObj, 'risk');
-          var formattedObj = common.getFormattedObj(countObj);
+          var formattedObj = common.getFormattedObj(countObj, true);
 
           self.subtitle = 'Establishment Risk Levels';
           self.labels = formattedObj.labels;
