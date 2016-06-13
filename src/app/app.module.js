@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('visualApp', [
+var app = angular.module('visualApp', [
   'header',
   'inspectionResults',
   'inspectionDate',

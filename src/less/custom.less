@@ -54,7 +54,10 @@ body {
         border: 1px solid @color-border;
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
-        min-height: 410px;
+
+        @media (min-width: @screen-lg-min) {
+          min-height: 410px;
+        }
 
         .chart {
           padding: 10px;
