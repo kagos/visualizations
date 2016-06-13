@@ -12,14 +12,6 @@ module.exports = function(grunt) {
         files: {
           'src/build/style.css': 'src/less/style.less'
         }
-      },
-      production: {
-        options: {
-          paths: ['src/less']
-        },
-        files: {
-          'src/build/style.css': 'src/less/style.less'
-        }
       }
     }
   });

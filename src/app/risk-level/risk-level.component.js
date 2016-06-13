@@ -4,32 +4,17 @@ angular
   .module('riskLevel')
   .component('riskLevel', {
     templateUrl: 'app/risk-level/risk-level.template.html',
-
     controller: ['$http', 'CityDataService',
-      function RiskLevelDonutChartCtrl($http, CityDataService) {
+      function RiskLevelChartCtrl($http, CityDataService) {
         var self = this;
-        
-        self.subtitle = 'Establishment Risk Levels';
 
         CityDataService.getCityData($http).success(function(dataObj) {
+          var countObj = common.buildCountObj(dataObj, 'risk');
+          var formattedObj = common.getFormattedObj(countObj);
 
-          var data = [];
-          var labels = [];
-          var riskObj = common.buildCountObj(dataObj, 'risk');
-
-          // Iterate through riskObj to create arrays for labels and the count of
-          // occurrences of those labels...
-          $.each(riskObj, function(value, key) {
-            labels.push(value);
-            data.push(key);
-          });
-
-          // Assign new arrays to this for usage with the donut chart
-          self.labels = labels;
-          self.data = data;
-
-        }).error(function(err) {
-          console.log(err);
+          self.subtitle = 'Establishment Risk Levels';
+          self.labels = formattedObj.labels;
+          self.data = formattedObj.data;
         });
       }
     ]}

@@ -13,6 +13,21 @@ var common = {
     return _obj;
   },
 
+  getFormattedObj: function(countObj) {
+    var labels = [];
+    var data = [];
+
+    $.each(countObj, function(value, key) {
+      labels.push(value);
+      data.push(key);
+    });
+
+    return {
+      labels: labels,
+      data: data
+    }
+  },
+
   getMonthName: function(monthIndex) {
     var months = [
       "January",

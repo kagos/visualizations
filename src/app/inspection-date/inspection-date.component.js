@@ -4,15 +4,10 @@ angular
   .module('inspectionDate')
   .component('inspectionDate', {
     templateUrl: 'app/inspection-date/inspection-date.template.html',
-
     controller: ['$http', '$timeout', 'CityDataService',
-      function InspectionPerDateLineChartCtrl($http, $timeout, CityDataService) {
+      function InspectionPerDateChartCtrl($http, $timeout, CityDataService) {
         var self = this;
-
-        self.subtitle = 'Inspection Dates';
-
         CityDataService.getCityData($http).success(function(dataObj) {
-
           var data = [];
           var labels = [];
           var dateObj = {};
@@ -28,21 +23,16 @@ angular
             }
           });
 
-          // Iterate through dateObj to create arrays for labels and the count of
-          // occurrences of those labels...
           $.each(dateObj, function(value, key) {
             data.push(key);
           });
 
-          // Assign new arrays to self for usage with the line chart
+          self.subtitle = 'Inspection Dates';
           self.labels = common.getMonthName();
 
           $timeout(function() {
             self.data = [data];
           }, 0);
-
-        }).error(function(err) {
-          console.log(err);
         });
       }
     ]
