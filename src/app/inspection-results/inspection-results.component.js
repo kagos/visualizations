@@ -9,7 +9,9 @@ angular
         var self = this;
 
         CityDataService.getCityData($http).success(function(dataObj) {
-          var countObj = common.buildCountObj(dataObj, 'results');
+          var displayLowerLimit = 50;
+          var countObj = common.buildCountObj(dataObj, 'results',
+            displayLowerLimit);
           var formattedObj = common.getFormattedObj(countObj);
 
           self.subtitle = 'Inspection Results';

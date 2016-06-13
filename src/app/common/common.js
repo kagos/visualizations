@@ -1,5 +1,5 @@
 var common = {
-  buildCountObj: function(dataObj, property) {
+  buildCountObj: function(dataObj, property, limit) {
     var _obj = {};
 
     $(dataObj).each(function(index, entry) {
@@ -10,7 +10,18 @@ var common = {
       }
     });
 
-    return _obj;
+    return limit ?
+      common.filterObjectByLowerLimit(_obj, limit) :
+      _obj;
+  },
+
+  filterObjectByLowerLimit: function(dataObj, limit) {
+    for(var thisObj in dataObj) {
+      if(dataObj[thisObj] < limit) {
+        delete dataObj[thisObj];
+      }
+    };
+    return dataObj;
   },
 
   getFormattedObj: function(countObj) {
