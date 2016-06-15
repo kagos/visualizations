@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('inspectionDate', [
-  'cityData',
-  'chart.js'
+  'chart.js',
+  'cityData'
 ]);

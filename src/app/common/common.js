@@ -1,51 +1,48 @@
 "use strict";
 
-var common = {
-  buildCountObj: function(dataObj, property, limit) {
-    var _obj = {};
+const common = {
+  buildCountObj: (dataObj, property, limit) => {
+    let _countedObj = {};
 
-    $(dataObj).each(function(index, entry) {
-      if(entry[property]) {
-        _obj.hasOwnProperty(entry[property]) ?
-          _obj[entry[property]]++ :
-          _obj[entry[property]] = 1;
+    $(dataObj).each((index, entry) => {
+      const _objProp = entry[property];
+      if(_objProp) {
+        _countedObj.hasOwnProperty(_objProp) ?
+          _countedObj[_objProp]++ :
+          _countedObj[_objProp] = 1;
       }
     });
 
     return limit ?
-      common.filterObjectByLowerLimit(_obj, limit) :
-      _obj;
+      common.filterObjectByLowerLimit(_countedObj, limit) :
+      _countedObj;
   },
 
-  filterObjectByLowerLimit: function(dataObj, limit) {
-    for(var thisObj in dataObj) {
-      if(dataObj[thisObj] < limit) {
-        delete dataObj[thisObj];
+  filterObjectByLowerLimit: (dataObj, limit) => {
+    for(let _objProp in dataObj) {
+      if(dataObj[_objProp] < limit) {
+        delete dataObj[_objProp];
       }
     };
 
     return dataObj;
   },
 
-  getFormattedObj: function(countObj, sortType) {
-    var _obj = {
+  getFormattedObj: (countObj, sortType) => {
+    let _formattedObj = {
       labels: [],
       data: []
     };
 
-    if(sortType) countObj = common.sortObjProperties(countObj, sortType);
-
-    $.each(countObj, function(value, key) {
-      _obj.labels.push(value);
-      _obj.data.push(key);
+    $.each(countObj, (_value, _key) => {
+      _formattedObj.labels.push(_value);
+      _formattedObj.data.push(_key);
     });
 
-    return _obj;
+    return _formattedObj;
   },
 
-  getMonthName: function(monthIndex) {
-    return common.months[monthIndex];
-  },
+  getMonthName: (monthIndex) => common.months[monthIndex],
 
   months: [
     "January",
@@ -62,21 +59,21 @@ var common = {
     "December"
   ],
 
-  sortObjProperties: function(dataObj, sortType) {
-    var sorted = {};
-    var _workingArr = [];
+  sortObjProperties: (dataObj, sortType) => {
+    let _sortedObj = {};
+    let _workingArr = [];
 
-    for (var key in dataObj) {
-      if (dataObj.hasOwnProperty(key)) {
-        _workingArr.push(key);
+    for (let _key in dataObj) {
+      if (dataObj.hasOwnProperty(_key)) {
+        _workingArr.push(_key);
       }
     }
     _workingArr.sort();
 
-    $.each(_workingArr, function(key) {
-      sorted[_workingArr[key]] = dataObj[_workingArr[key]];
+    $.each(_workingArr, (_key) => {
+      _sortedObj[_workingArr[_key]] = dataObj[_workingArr[_key]];
     });
 
-    return sorted;
+    return _sortedObj;
   }
 };
